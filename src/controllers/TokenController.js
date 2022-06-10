@@ -1,5 +1,9 @@
 import jwt from 'jsonwebtoken';
-import Prof from '../models/Prof';
+import Sequelize, { QueryTypes } from 'sequelize';
+import Profs from '../models/Prof';
+import dataBaseConfig from '../config/database';
+
+const connection = new Sequelize(dataBaseConfig);
 
 class TokenController {
   async store(req, res) {
@@ -9,11 +13,16 @@ class TokenController {
         errors: ['Credenciais invalidas'],
       });
     }
-    const prof = await Prof.findOne({ where: { login } });
-
+    try {
+      const prof = await Profs.findOne({ where: { login } });
+      // const prof = await connection.query('SELECT * FROM Profs WHERE Profs.login = ? LIMIT 1', { replacements: [login], type: QueryTypes.SELECT });
+      console.log(prof);
+    } catch (error) {
+      console.log(error);
+    }
     if (!prof) {
       return res.status(401).json({
-        errors: ['Prof nao existe'],
+        errors: ['Profs nao existe'],
       });
     }
 
