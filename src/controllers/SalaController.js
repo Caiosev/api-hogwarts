@@ -58,9 +58,9 @@ class SalaController {
         });
       }
 
-      const casaAtualizado = await Sala.update(req.body);
+      await Sala.update(req.body, { where: { id } });
 
-      return res.json(casaAtualizado);
+      return res.json({ sucesso: true });
     } catch (e) {
       return res.status(400).json({
         errors: e.erros.map((err) => err.message),

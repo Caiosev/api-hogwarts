@@ -1,15 +1,15 @@
 import Sequelize from 'sequelize';
 import dataBaseConfig from '../config/database';
-import Aluno from '../models/Aluno';
-import Prof from '../models/Prof';
+// import Aluno from '../models/Aluno';
+// import Prof from '../models/Prof';
 import Casa from '../models/Casa';
-import Foto_Aluno from '../models/Foto_Aluno';
-import Foto_Prof from '../models/Foto_Prof';
-import Materia from '../models/Materia';
-import Nota from '../models/Nota';
+// import Foto_Aluno from '../models/Foto_Aluno';
+// import Foto_Prof from '../models/Foto_Prof';
+// import Materia from '../models/Materia';
+// import Nota from '../models/Nota';
 import Sala from '../models/Sala';
 
-const models = [Aluno, Prof, Foto_Aluno, Foto_Prof, Casa, Materia, Nota, Sala];
+const models = [Sala, Casa];
 
 const connection = new Sequelize(dataBaseConfig);
 

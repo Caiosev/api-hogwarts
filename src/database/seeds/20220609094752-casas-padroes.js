@@ -5,19 +5,15 @@ module.exports = {
       [
         {
           nome: 'Grifinória',
-          nota: 0,
         },
         {
           nome: 'Sonserina',
-          nota: 0,
         },
         {
           nome: 'Lufa-lufa',
-          nota: 0,
         },
         {
           nome: 'Corvinal',
-          nota: 0,
         },
       ],
 
