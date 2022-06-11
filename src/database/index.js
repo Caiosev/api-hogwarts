@@ -5,11 +5,11 @@ import dataBaseConfig from '../config/database';
 import Casa from '../models/Casa';
 // import Foto_Aluno from '../models/Foto_Aluno';
 // import Foto_Prof from '../models/Foto_Prof';
-// import Materia from '../models/Materia';
+import Materia from '../models/Materia';
 // import Nota from '../models/Nota';
 import Sala from '../models/Sala';
 
-const models = [Sala, Casa];
+const models = [Sala, Casa, Materia];
 
 const connection = new Sequelize(dataBaseConfig);
 

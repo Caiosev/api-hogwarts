@@ -14,7 +14,7 @@ import homeRoutes from './routes/homeRoutes';
 // import fotoAlunoRoutes from './routes/fotoAlunoRoutes';
 // import fotoProfRoutes from './routes/fotoProfRoutes';
 import casaRoutes from './routes/casaRoutes';
-// import materiaRoutes from './routes/materiaRoutes';
+import materiaRoutes from './routes/materiaRoutes';
 // import notaRoutes from './routes/notaRoutes';
 import salaRoutes from './routes/salaRoutes';
 
@@ -44,7 +44,7 @@ class App {
     // this.app.use('/alunos', alunoRoutes);
     this.app.use('/casas', casaRoutes);
     // this.app.use('/notas', notaRoutes);
-    // this.app.use('/materias', materiaRoutes);
+    this.app.use('/materias', materiaRoutes);
     this.app.use('/salas', salaRoutes);
     // this.app.use('/fotosAlunos', fotoAlunoRoutes);
     // this.app.use('/fotosProf', fotoProfRoutes);
