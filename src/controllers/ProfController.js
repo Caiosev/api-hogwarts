@@ -4,6 +4,7 @@ import Materia from '../models/Materia';
 class ProfController {
   async store(req, res) {
     try {
+      console.log(req.body);
       const novoProf = await Prof.create(req.body);
       const { id, nome, login } = novoProf;
       return res.json({ id, nome, login });

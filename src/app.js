@@ -10,7 +10,7 @@ import { resolve } from 'path';
 import homeRoutes from './routes/homeRoutes';
 import profRoutes from './routes/profRoutes';
 import tokenRoutes from './routes/TokenRoutes';
-// import alunoRoutes from './routes/alunoRoutes';
+import alunoRoutes from './routes/alunoRoutes';
 // import fotoAlunoRoutes from './routes/fotoAlunoRoutes';
 // import fotoProfRoutes from './routes/fotoProfRoutes';
 import casaRoutes from './routes/casaRoutes';
@@ -41,7 +41,7 @@ class App {
     this.app.use('/', homeRoutes);
     this.app.use('/prof', profRoutes);
     this.app.use('/tokens', tokenRoutes);
-    // this.app.use('/alunos', alunoRoutes);
+    this.app.use('/alunos', alunoRoutes);
     this.app.use('/casas', casaRoutes);
     // this.app.use('/notas', notaRoutes);
     this.app.use('/materias', materiaRoutes);

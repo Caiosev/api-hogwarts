@@ -7,7 +7,12 @@ class Casa extends Model {
       nota_total: DataTypes.INTEGER,
     }, {
       sequelize,
+      modelName: 'casas',
     });
+  }
+
+  static associate(models) {
+    this.hasMany(models.alunos, { foreignKey: 'casa_id', as: 'casa-aluno' });
   }
 }
 
