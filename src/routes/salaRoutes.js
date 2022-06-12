@@ -1,13 +1,13 @@
 import { Router } from 'express';
 import salaController from '../controllers/SalaController';
-// import loginRequired from '../middlewares/loginRequired';
+import loginRequired from '../middlewares/loginRequired';
 
 const router = new Router();
 
 router.get('/', salaController.index);
-router.post('/', salaController.store);
-router.put('/:id', salaController.update);
+router.post('/', loginRequired, salaController.store);
+router.put('/:id', loginRequired, salaController.update);
 router.get('/:id', salaController.show);
-router.delete('/:id', salaController.delete);
+router.delete('/:id', loginRequired, salaController.delete);
 
 export default router;
