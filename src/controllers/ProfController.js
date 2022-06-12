@@ -17,7 +17,6 @@ class ProfController {
       const prof = await Prof.findAll({ include: [{ model: Materia, as: 'materia_id' }] });
       return res.json(prof);
     } catch (e) {
-      console.log(e);
       return res.json(null);
     }
   }
