@@ -9,6 +9,10 @@ class Materia extends Model {
       modelName: 'materias',
     });
   }
+
+  static associate(models) {
+    this.hasOne(models.profs, { foreignKey: 'materia_id', as: 'materia-prof' });
+  }
 }
 
 module.exports = Materia;

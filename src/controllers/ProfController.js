@@ -1,5 +1,4 @@
 import Prof from '../models/Prof';
-import Materia from '../models/Materia';
 
 class ProfController {
   async store(req, res) {
@@ -15,7 +14,12 @@ class ProfController {
 
   async index(req, res) {
     try {
-      const prof = await Prof.findAll({ include: [{ model: Materia, as: 'materia_id' }] });
+      const prof = await Prof.findAll(
+        {
+          include:
+         { association: 'prof-materia' },
+        },
+      );
       return res.json(prof);
     } catch (e) {
       return res.json(null);

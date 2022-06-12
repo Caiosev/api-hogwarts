@@ -20,6 +20,7 @@ class Prof extends Model {
       },
     }, {
       sequelize,
+      modelName: 'profs',
     });
     this.addHook('beforeSave', async (prof) => {
       if (prof.password) {
@@ -34,7 +35,7 @@ class Prof extends Model {
   }
 
   static associate(models) {
-    this.hasOne(models.materias, { foreignKey: 'id', as: 'materia_id' });
+    this.belongsTo(models.materias, { foreignKey: 'materia_id', as: 'prof-materia' });
   }
 }
 

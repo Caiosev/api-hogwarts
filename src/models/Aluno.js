@@ -23,14 +23,3 @@ class Aluno extends Model {
 }
 
 module.exports = Aluno;
-
-// {
-// 	"nome":"Hermione",
-// 	"sobrenome":"Granger",
-// 	"idade":12,
-// 	"sangue_status":"nascido de trouxa",
-// 	"varinha":"videira, com 27,305cm núcleo de fibra de coração de dragão.",
-// 	"patrono":"Lontra",
-// 	"sala_id":1,
-// 	"casa_id":1
-// }
