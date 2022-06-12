@@ -6,7 +6,8 @@ class AlunoController {
       {
         include:
        [{ association: 'aluno-sala' },
-         { association: 'aluno-casa' }],
+         { association: 'aluno-casa' },
+         { association: 'aluno-foto' }],
       },
     );
     res.json(alunos);

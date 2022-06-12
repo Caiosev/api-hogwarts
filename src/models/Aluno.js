@@ -19,6 +19,7 @@ class Aluno extends Model {
   static associate(models) {
     this.belongsTo(models.salas, { foreignKey: 'sala_id', as: 'aluno-sala' });
     this.belongsTo(models.casas, { foreignKey: 'casa_id', as: 'aluno-casa' });
+    this.hasMany(models.fotoalunos, { foreignKey: 'aluno_id', as: 'aluno-foto' });
   }
 }
 
