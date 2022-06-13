@@ -58,9 +58,9 @@ class MateriaController {
         });
       }
 
-      const casaAtualizado = await _Materia2.default.update(req.body);
+      const materiaAtualizado = await materia.update(req.body);
 
-      return res.json(casaAtualizado);
+      return res.json(materiaAtualizado);
     } catch (e) {
       return res.status(400).json({
         errors: e.erros.map((err) => err.message),

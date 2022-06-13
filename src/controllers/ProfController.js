@@ -29,7 +29,11 @@ class ProfController {
   async show(req, res) {
     try {
       const { id } = req.params;
-      const prof = await Prof.findByPk(id);
+      const prof = await Prof.findByPk(id, {
+        include:
+       [{ association: 'prof-materia' },
+         { association: 'prof-fotoprof' }],
+      });
       const { nome, login } = prof;
       return res.json({ id, nome, login });
     } catch (e) {

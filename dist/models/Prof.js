@@ -1,45 +1,15 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _sequelize = require('sequelize'); var _sequelize2 = _interopRequireDefault(_sequelize);
-var _bcryptjs = require('bcryptjs'); var _bcryptjs2 = _interopRequireDefault(_bcryptjs);
+"use strict";const { Model, DataTypes, Sequelize } = require('sequelize');
+const bcrypt = require('bcryptjs');
 
- class Prof extends _sequelize.Model {
+class Prof extends Model {
   static init(sequelize) {
     super.init({
-      nome: {
-        type: _sequelize2.default.STRING,
-        defaultValue: '',
-        validate: {
-          len: {
-            args: [3, 255],
-            msg: 'O Nome deve ter mais de 3 caracteres',
-          },
-        },
-      },
-      sobrenome: {
-        type: _sequelize2.default.STRING,
-        defaultValue: '',
-        validate: {
-          len: {
-            args: [3, 255],
-            msg: 'O Sobrenome deve ter mais de 3 caracteres',
-          },
-        },
-      },
-      login: {
-        type: _sequelize2.default.STRING,
-        defaultValue: '',
-        validate: {
-          len: {
-            args: [3, 255],
-            msg: 'O Login deve ter mais de 3 caracteres',
-          },
-        },
-      },
-      password_hash: {
-        type: _sequelize2.default.STRING,
-        defaultValue: '',
-      },
-      senha: {
-        type: _sequelize2.default.VIRTUAL,
+      nome: DataTypes.STRING,
+      sobrenome: DataTypes.STRING,
+      login: DataTypes.STRING,
+      senha_hash: DataTypes.STRING,
+      password: {
+        type: Sequelize.VIRTUAL,
         defaultValue: '',
         validate: {
           len: {
@@ -48,20 +18,27 @@ var _bcryptjs = require('bcryptjs'); var _bcryptjs2 = _interopRequireDefault(_bc
           },
         },
       },
-    }, { sequelize });
+    }, {
+      sequelize,
+      modelName: 'profs',
+    });
     this.addHook('beforeSave', async (prof) => {
-      if (!prof.senha) return;
-      prof.password_hash = await _bcryptjs2.default.hash(prof.senha, 8);
+      if (prof.password) {
+        prof.senha_hash = await bcrypt.hash(prof.password, 8);
+      }
     });
     return this;
   }
 
-  passwordIsValid(senha) {
-    return _bcryptjs2.default.compare(senha, this.password_hash);
+  passwordIsValid(password) {
+    return bcrypt.compare(password, this.senha_hash);
   }
 
   static associate(models) {
-    this.hasMany(models.Foto_Prof, { foreignKey: 'foto_prof_id' });
-    this.hasMany(models.Materia, { foreignKey: 'materias_id' });
+    this.belongsTo(models.materias, { foreignKey: 'materia_id', as: 'prof-materia' });
+    this.hasMany(models.fotoprofs, { foreignKey: 'prof_id', as: 'prof-fotoprof' });
+    this.hasMany(models.provas, { foreignKey: 'prof_id', as: 'prof-prova' });
   }
-} exports.default = Prof;
+}
+
+module.exports = Prof;

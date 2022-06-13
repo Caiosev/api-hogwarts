@@ -9,11 +9,12 @@ class TokenController {
         errors: ['Credenciais invalidas'],
       });
     }
+
     const prof = await _Prof2.default.findOne({ where: { login } });
 
     if (!prof) {
       return res.status(401).json({
-        errors: ['Prof nao existe'],
+        errors: ['Profs nao existe'],
       });
     }
 

@@ -1,22 +1,18 @@
-"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _sequelize = require('sequelize'); var _sequelize2 = _interopRequireDefault(_sequelize);
+"use strict";const { Model, DataTypes } = require('sequelize');
 
- class Sala extends _sequelize.Model {
+class Sala extends Model {
   static init(sequelize) {
     super.init({
-      nome: {
-        type: _sequelize2.default.STRING,
-        defaultValue: '',
-        validate: {
-          notEmpty: {
-            args: [3, 255],
-            msg: 'O nome da sala nao pode ser vazio',
-          },
-        },
-      },
-    }, { sequelize });
+      nome: DataTypes.STRING,
+    }, {
+      sequelize,
+      modelName: 'salas',
+    });
   }
 
   static associate(models) {
-    this.hasMany(models.Aluno, { foreignKey: 'aluno_id' });
+    this.hasMany(models.alunos, { foreignKey: 'sala_id', as: 'sala-aluno' });
   }
-} exports.default = Sala;
+}
+
+module.exports = Sala;

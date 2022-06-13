@@ -23,7 +23,6 @@ exports. default = async (req, res, next) => {
         errors: ['Prof Invalido'],
       });
     }
-    console.log(user);
     req.profId = id;
     req.profLogin = login;
     return next();

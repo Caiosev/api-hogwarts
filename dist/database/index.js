@@ -6,10 +6,10 @@ var _Casa = require('../models/Casa'); var _Casa2 = _interopRequireDefault(_Casa
 var _Foto_Aluno = require('../models/Foto_Aluno'); var _Foto_Aluno2 = _interopRequireDefault(_Foto_Aluno);
 var _Foto_Prof = require('../models/Foto_Prof'); var _Foto_Prof2 = _interopRequireDefault(_Foto_Prof);
 var _Materia = require('../models/Materia'); var _Materia2 = _interopRequireDefault(_Materia);
-var _Nota = require('../models/Nota'); var _Nota2 = _interopRequireDefault(_Nota);
+var _Prova = require('../models/Prova'); var _Prova2 = _interopRequireDefault(_Prova);
 var _Sala = require('../models/Sala'); var _Sala2 = _interopRequireDefault(_Sala);
 
-const models = [_Aluno2.default, _Prof2.default, _Foto_Aluno2.default, _Foto_Prof2.default, _Casa2.default, _Materia2.default, _Nota2.default, _Sala2.default];
+const models = [_Sala2.default, _Casa2.default, _Materia2.default, _Prof2.default, _Aluno2.default, _Foto_Aluno2.default, _Foto_Prof2.default, _Prova2.default];
 
 const connection = new (0, _sequelize2.default)(_database2.default);
 

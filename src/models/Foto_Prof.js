@@ -26,7 +26,7 @@ export default class Foto_Prof extends Model {
       url: {
         type: Sequelize.VIRTUAL,
         get() {
-          return `https://aquiles-api.seventerprise.tech/images/${this.getDataValue('filename')}`;
+          return `https://hogwarts-api.seventerprise.tech/images/${this.getDataValue('filename')}`;
         },
       },
     }, { sequelize, modelName: 'fotoprofs' });

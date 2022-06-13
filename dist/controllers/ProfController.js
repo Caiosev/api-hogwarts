@@ -13,7 +13,13 @@ class ProfController {
 
   async index(req, res) {
     try {
-      const prof = await _Prof2.default.findAll({ attributes: ['id', 'nome', 'login'] });
+      const prof = await _Prof2.default.findAll(
+        {
+          include:
+         [{ association: 'prof-materia' },
+           { association: 'prof-fotoprof' }],
+        },
+      );
       return res.json(prof);
     } catch (e) {
       return res.json(null);
@@ -23,7 +29,11 @@ class ProfController {
   async show(req, res) {
     try {
       const { id } = req.params;
-      const prof = await _Prof2.default.findByPk(id);
+      const prof = await _Prof2.default.findByPk(id, {
+        include:
+       [{ association: 'prof-materia' },
+         { association: 'prof-fotoprof' }],
+      });
       const { nome, login } = prof;
       return res.json({ id, nome, login });
     } catch (e) {

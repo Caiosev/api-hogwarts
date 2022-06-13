@@ -26,14 +26,14 @@
       url: {
         type: _sequelize2.default.VIRTUAL,
         get() {
-          return `https://aquiles-api.seventerprise.tech/images/profs/${this.getDataValue('filename')}`;
+          return `https://hogwarts-api.seventerprise.tech/images/${this.getDataValue('filename')}`;
         },
       },
-    }, { sequelize });
+    }, { sequelize, modelName: 'fotoprofs' });
     return this;
   }
 
   static associate(models) {
-    this.belongsTo(models.Prof, { foreignKey: 'Prof_id' });
+    this.belongsTo(models.profs, { foreignKey: 'prof_id', as: 'fotoprof-prof' });
   }
 } exports.default = Foto_Prof;

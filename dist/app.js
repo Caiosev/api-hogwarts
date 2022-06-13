@@ -15,7 +15,7 @@ var _fotoAlunoRoutes = require('./routes/fotoAlunoRoutes'); var _fotoAlunoRoutes
 var _fotoProfRoutes = require('./routes/fotoProfRoutes'); var _fotoProfRoutes2 = _interopRequireDefault(_fotoProfRoutes);
 var _casaRoutes = require('./routes/casaRoutes'); var _casaRoutes2 = _interopRequireDefault(_casaRoutes);
 var _materiaRoutes = require('./routes/materiaRoutes'); var _materiaRoutes2 = _interopRequireDefault(_materiaRoutes);
-var _notaRoutes = require('./routes/notaRoutes'); var _notaRoutes2 = _interopRequireDefault(_notaRoutes);
+var _provaRoutes = require('./routes/provaRoutes'); var _provaRoutes2 = _interopRequireDefault(_provaRoutes);
 var _salaRoutes = require('./routes/salaRoutes'); var _salaRoutes2 = _interopRequireDefault(_salaRoutes);
 
 require('./database');
@@ -43,7 +43,7 @@ class App {
     this.app.use('/tokens', _TokenRoutes2.default);
     this.app.use('/alunos', _alunoRoutes2.default);
     this.app.use('/casas', _casaRoutes2.default);
-    this.app.use('/notas', _notaRoutes2.default);
+    this.app.use('/provas', _provaRoutes2.default);
     this.app.use('/materias', _materiaRoutes2.default);
     this.app.use('/salas', _salaRoutes2.default);
     this.app.use('/fotosAlunos', _fotoAlunoRoutes2.default);

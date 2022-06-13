@@ -34,7 +34,12 @@ class AlunoController {
         });
       }
 
-      const aluno = await Aluno.findByPk(id);
+      const aluno = await Aluno.findByPk(id, {
+        include:
+       [{ association: 'aluno-sala' },
+         { association: 'aluno-casa' },
+         { association: 'aluno-foto' }],
+      });
 
       if (!aluno) {
         return res.status(400).json({
