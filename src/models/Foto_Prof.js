@@ -1,6 +1,6 @@
 import Sequelize, { Model } from 'sequelize';
 
-export default class Foto_Aluno extends Model {
+export default class Foto_Prof extends Model {
   static init(sequelize) {
     super.init({
       originalname: {
@@ -29,11 +29,11 @@ export default class Foto_Aluno extends Model {
           return `https://aquiles-api.seventerprise.tech/images/${this.getDataValue('filename')}`;
         },
       },
-    }, { sequelize, modelName: 'fotoalunos' });
+    }, { sequelize, modelName: 'fotoprofs' });
     return this;
   }
 
   static associate(models) {
-    this.belongsTo(models.alunos, { foreignKey: 'aluno_id', as: 'fotoaluno-aluno' });
+    this.belongsTo(models.profs, { foreignKey: 'prof_id', as: 'fotoprof-prof' });
   }
 }

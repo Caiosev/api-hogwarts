@@ -12,7 +12,7 @@ import profRoutes from './routes/profRoutes';
 import tokenRoutes from './routes/TokenRoutes';
 import alunoRoutes from './routes/alunoRoutes';
 import fotoAlunoRoutes from './routes/fotoAlunoRoutes';
-// import fotoProfRoutes from './routes/fotoProfRoutes';
+import fotoProfRoutes from './routes/fotoProfRoutes';
 import casaRoutes from './routes/casaRoutes';
 import materiaRoutes from './routes/materiaRoutes';
 // import notaRoutes from './routes/notaRoutes';
@@ -47,7 +47,7 @@ class App {
     this.app.use('/materias', materiaRoutes);
     this.app.use('/salas', salaRoutes);
     this.app.use('/fotosAlunos', fotoAlunoRoutes);
-    // this.app.use('/fotosProf', fotoProfRoutes);
+    this.app.use('/fotosProf', fotoProfRoutes);
   }
 }
 

@@ -36,6 +36,7 @@ class Prof extends Model {
 
   static associate(models) {
     this.belongsTo(models.materias, { foreignKey: 'materia_id', as: 'prof-materia' });
+    this.hasMany(models.fotoprofs, { foreignKey: 'prof_id', as: 'prof-fotoprof' });
   }
 }
 

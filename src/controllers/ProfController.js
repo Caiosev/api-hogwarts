@@ -3,7 +3,6 @@ import Prof from '../models/Prof';
 class ProfController {
   async store(req, res) {
     try {
-      console.log(req.body);
       const novoProf = await Prof.create(req.body);
       const { id, nome, login } = novoProf;
       return res.json({ id, nome, login });
@@ -17,7 +16,8 @@ class ProfController {
       const prof = await Prof.findAll(
         {
           include:
-         { association: 'prof-materia' },
+         [{ association: 'prof-materia' },
+           { association: 'prof-fotoprof' }],
         },
       );
       return res.json(prof);
