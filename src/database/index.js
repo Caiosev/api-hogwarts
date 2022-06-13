@@ -6,10 +6,10 @@ import Casa from '../models/Casa';
 import Foto_Aluno from '../models/Foto_Aluno';
 import Foto_Prof from '../models/Foto_Prof';
 import Materia from '../models/Materia';
-// import Nota from '../models/Nota';
+import Prova from '../models/Prova';
 import Sala from '../models/Sala';
 
-const models = [Sala, Casa, Materia, Prof, Aluno, Foto_Aluno, Foto_Prof];
+const models = [Sala, Casa, Materia, Prof, Aluno, Foto_Aluno, Foto_Prof, Prova];
 
 const connection = new Sequelize(dataBaseConfig);
 
