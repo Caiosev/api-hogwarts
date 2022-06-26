@@ -31,11 +31,8 @@ class App {
 
   middlewares() {
     this.app.use(_cors2.default.call(void 0, {
-      allowedHeaders: ['sessionId', 'Content-Type'],
-      exposedHeaders: ['sessionId'],
       origin: '*',
       methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-      preflightContinue: false,
     }));
     this.app.use(_helmet2.default.call(void 0, ));
     this.app.use(_helmet2.default.crossOriginResourcePolicy({ policy: 'cross-origin' }));
