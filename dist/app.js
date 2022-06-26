@@ -22,6 +22,21 @@ require('./database');
 
 _dotenv2.default.config();
 
+const whitelist = [
+  'https://hogwarts.seventerprise.tech',
+  'http://localhost:3000',
+];
+
+const corsOptions = {
+  origin(origin, callback) {
+    if (whitelist.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Cors nao registrado'));
+    }
+  },
+};
+
 class App {
   constructor() {
     this.app = _express2.default.call(void 0, );
@@ -30,14 +45,8 @@ class App {
   }
 
   middlewares() {
-    this.app.use(_cors2.default.call(void 0, ));
-    this.app.use(_helmet2.default.call(void 0, {
-      crossOriginResourcePolicy: false,
-      crossOriginEmbedderPolicy: false,
-    }));
-    _helmet2.default.frameguard({
-      action: 'deny',
-    });
+    this.app.use(_cors2.default.call(void 0, corsOptions));
+    this.app.use(_helmet2.default.call(void 0, ));
     this.app.use(_express2.default.urlencoded({ extended: true }));
     this.app.use(_express2.default.json());
     this.app.use('/images/', _express2.default.static(_path.resolve.call(void 0, __dirname, '..', 'uploads', 'images')));
