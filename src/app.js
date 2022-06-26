@@ -33,6 +33,7 @@ class App {
     this.app.use(cors());
     this.app.use(helmet({
       crossOriginResourcePolicy: false,
+      crossOriginEmbedderPolicy: false,
     }));
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
