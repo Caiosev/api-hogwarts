@@ -4,7 +4,6 @@
 
 import dotenv from 'dotenv';
 import cors from 'cors';
-import helmet from 'helmet';
 import express from 'express';
 import { resolve } from 'path';
 import homeRoutes from './routes/homeRoutes';
@@ -36,9 +35,6 @@ class App {
 
   middlewares() {
     this.app.use(cors(corsOptions));
-    this.app.use(helmet({
-      crossOriginResourcePolicy: false,
-    }));
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
     this.app.use('/images/', express.static(resolve(__dirname, '..', 'uploads', 'images')));
