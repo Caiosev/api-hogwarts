@@ -35,6 +35,9 @@ class App {
       crossOriginResourcePolicy: false,
       crossOriginEmbedderPolicy: false,
     }));
+    _helmet2.default.frameguard({
+      action: 'deny',
+    });
     this.app.use(_express2.default.urlencoded({ extended: true }));
     this.app.use(_express2.default.json());
     this.app.use('/images/', _express2.default.static(_path.resolve.call(void 0, __dirname, '..', 'uploads', 'images')));
