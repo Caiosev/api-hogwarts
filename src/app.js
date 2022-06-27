@@ -22,6 +22,12 @@ import './database';
 
 dotenv.config();
 
+const corsOptions = {
+  origin: '*',
+  credentials: true,
+  preflightContinue: true,
+};
+
 class App {
   constructor() {
     this.app = express();
@@ -30,15 +36,7 @@ class App {
   }
 
   middlewares() {
-    this.app.use(cors());
-    this.app.use((req, res, next) => {
-      res.setHeader('Access-Control-Allow-Origin', '*');
-      res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-      res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-      res.setHeader('Access-Control-Allow-Credentials', true);
-
-      next();
-    });
+    this.app.use(cors(corsOptions));
     this.app.use(helmet({ crossOriginResourcePolicy: false }));
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
