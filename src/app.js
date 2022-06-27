@@ -30,6 +30,12 @@ class App {
   }
 
   middlewares() {
+    this.app.use(cors({
+      credentials: true,
+      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+      allowedHeaders: ['Content-Type', 'Authorization'],
+      origin: ['http://localhost:3000', 'htps://hogwarts.seventerprise.tech'],
+    }));
     this.app.use(helmet({ crossOriginResourcePolicy: false }));
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
@@ -37,16 +43,16 @@ class App {
   }
 
   routes() {
-    this.app.use('/', cors(), homeRoutes);
-    this.app.use('/prof', cors(), profRoutes);
-    this.app.use('/tokens', cors(), tokenRoutes);
-    this.app.use('/alunos', cors(), alunoRoutes);
-    this.app.use('/casas', cors(), casaRoutes);
-    this.app.use('/provas', cors(), provaRoutes);
-    this.app.use('/materias', cors(), materiaRoutes);
-    this.app.use('/salas', cors(), salaRoutes);
-    this.app.use('/fotosAlunos', cors(), fotoAlunoRoutes);
-    this.app.use('/fotosProf', cors(), fotoProfRoutes);
+    this.app.use('/', homeRoutes);
+    this.app.use('/prof', profRoutes);
+    this.app.use('/tokens', tokenRoutes);
+    this.app.use('/alunos', alunoRoutes);
+    this.app.use('/casas', casaRoutes);
+    this.app.use('/provas', provaRoutes);
+    this.app.use('/materias', materiaRoutes);
+    this.app.use('/salas', salaRoutes);
+    this.app.use('/fotosAlunos', fotoAlunoRoutes);
+    this.app.use('/fotosProf', fotoProfRoutes);
   }
 }
 
