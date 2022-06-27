@@ -6,7 +6,6 @@ import dotenv from 'dotenv';
 import helmet from 'helmet';
 import express from 'express';
 import { resolve } from 'path';
-import corsMiddleware from './middlewares/cors';
 import homeRoutes from './routes/homeRoutes';
 import profRoutes from './routes/profRoutes';
 import tokenRoutes from './routes/TokenRoutes';
@@ -25,8 +24,6 @@ dotenv.config();
 class App {
   constructor() {
     this.app = express();
-    this.app.options('*', corsMiddleware);
-    this.app.use(corsMiddleware);
     this.middlewares();
     this.routes();
   }
