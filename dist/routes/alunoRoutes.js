@@ -4,7 +4,7 @@ var _loginRequired = require('../middlewares/loginRequired'); var _loginRequired
 var _cors = require('../middlewares/cors'); var _cors2 = _interopRequireDefault(_cors);
 
 const router = new (0, _express.Router)();
-
+router.options('*', _cors2.default.call(void 0, ));
 router.get('/', _cors2.default, _loginRequired2.default, _AlunoController2.default.index);
 router.post('/', _cors2.default, _loginRequired2.default, _AlunoController2.default.store);
 router.put('/:id', _cors2.default, _loginRequired2.default, _AlunoController2.default.update);

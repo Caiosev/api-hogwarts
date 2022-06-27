@@ -4,7 +4,7 @@ import loginRequired from '../middlewares/loginRequired';
 import corsMiddleware from '../middlewares/cors';
 
 const router = new Router();
-
+router.options('*', corsMiddleware());
 router.get('/', corsMiddleware, loginRequired, alunoController.index);
 router.post('/', corsMiddleware, loginRequired, alunoController.store);
 router.put('/:id', corsMiddleware, loginRequired, alunoController.update);
