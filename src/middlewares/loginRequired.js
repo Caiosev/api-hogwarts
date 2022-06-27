@@ -1,7 +1,9 @@
 import jwt from 'jsonwebtoken';
+import cors from 'cors';
 import Prof from '../models/Prof';
 
 export default async (req, res, next) => {
+  cors();
   const { authorization } = req.headers;
   if (!authorization) {
     return res.status(401).json({
