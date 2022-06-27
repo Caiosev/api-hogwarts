@@ -19,8 +19,6 @@ import salaRoutes from './routes/salaRoutes';
 
 import './database';
 
-const cors = require('./middlewares/cors');
-
 dotenv.config();
 
 class App {
