@@ -1,9 +1,7 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _jsonwebtoken = require('jsonwebtoken'); var _jsonwebtoken2 = _interopRequireDefault(_jsonwebtoken);
-var _cors = require('cors'); var _cors2 = _interopRequireDefault(_cors);
 var _Prof = require('../models/Prof'); var _Prof2 = _interopRequireDefault(_Prof);
 
 exports. default = async (req, res, next) => {
-  _cors2.default.call(void 0, );
   const { authorization } = req.headers;
   if (!authorization) {
     return res.status(401).json({
