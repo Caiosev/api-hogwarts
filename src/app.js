@@ -4,7 +4,6 @@
 
 import dotenv from 'dotenv';
 import helmet from 'helmet';
-import cors from 'cors';
 import express from 'express';
 import { resolve } from 'path';
 import homeRoutes from './routes/homeRoutes';
@@ -20,6 +19,8 @@ import salaRoutes from './routes/salaRoutes';
 
 import './database';
 
+const cors = require('cors');
+
 dotenv.config();
 
 class App {
@@ -30,12 +31,12 @@ class App {
   }
 
   middlewares() {
-    this.app.use(cors({
-      credentials: true,
-      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-      allowedHeaders: ['Content-Type', 'authorization'],
-      origin: 'http://localhost:3000',
-    }));
+    this.app.use((req, res, next) => {
+      res.header('Access-Control-Allow-Origin', '*');
+      res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS,HEAD');
+      this.app.use(cors());
+      next();
+    });
     this.app.use(helmet({ crossOriginResourcePolicy: false }));
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
