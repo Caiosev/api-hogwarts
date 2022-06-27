@@ -1,9 +1,9 @@
 import { Router } from 'express';
+import cors from 'cors';
 import TokenController from '../controllers/TokenController';
-import cors from '../middlewares/cors';
 
 const router = new Router();
 
-router.post('/', cors, TokenController.store);
+router.post('/', cors(), TokenController.store);
 
 export default router;
