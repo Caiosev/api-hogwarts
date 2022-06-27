@@ -19,8 +19,6 @@ var _salaRoutes = require('./routes/salaRoutes'); var _salaRoutes2 = _interopReq
 
 require('./database');
 
-const cors = require('./middlewares/cors');
-
 _dotenv2.default.config();
 
 class App {
