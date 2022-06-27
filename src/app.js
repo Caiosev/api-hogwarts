@@ -29,8 +29,6 @@ class App {
   }
 
   middlewares() {
-    this.app.options('*', cors);
-    this.app.use(cors);
     this.app.use(helmet({ crossOriginResourcePolicy: false }));
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
