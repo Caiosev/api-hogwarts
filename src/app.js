@@ -34,7 +34,8 @@ class App {
     this.app.use((req, res, next) => {
       res.header('Access-Control-Allow-Origin', '*');
       res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS,HEAD');
-      res.header('Access-Control-Allow-Headers', 'Content-Type , Authorization');
+      res.header('Access-Control-Allow-Headers', 'X-Requested-With,Content-Type , Authorization');
+      res.setHeader('Access-Control-Allow-Credentials', true);
       this.app.use(cors());
       next();
     });
