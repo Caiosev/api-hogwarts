@@ -3,7 +3,7 @@
 // Sucrase para utilizar import e export from no node
 
 import dotenv from 'dotenv';
-import cors from 'cors';
+// import cors from 'cors';
 import helmet from 'helmet';
 import express from 'express';
 import { resolve } from 'path';
@@ -22,9 +22,9 @@ import './database';
 
 dotenv.config();
 
-const corsOptions = {
-  origin: '*',
-};
+// const corsOptions = {
+//   origin: '*',
+// };
 
 class App {
   constructor() {
@@ -34,8 +34,13 @@ class App {
   }
 
   middlewares() {
-    this.app.use(cors(corsOptions));
-    this.app.options('*', cors(corsOptions));
+    // this.app.use(cors(corsOptions));
+    // this.app.options('*', cors(corsOptions));
+    this.app.all('/*', (req, res, next) => {
+      res.header('Access-Control-Allow-Origin', '*');
+      res.header('Access-Control-Allow-Headers', 'X-Requested-With');
+      next();
+    });
     this.app.use(helmet({ crossOriginResourcePolicy: false }));
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());

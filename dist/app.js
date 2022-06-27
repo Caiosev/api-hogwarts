@@ -3,7 +3,7 @@
 // Sucrase para utilizar import e export from no node
 
 var _dotenv = require('dotenv'); var _dotenv2 = _interopRequireDefault(_dotenv);
-var _cors = require('cors'); var _cors2 = _interopRequireDefault(_cors);
+// import cors from 'cors';
 var _helmet = require('helmet'); var _helmet2 = _interopRequireDefault(_helmet);
 var _express = require('express'); var _express2 = _interopRequireDefault(_express);
 var _path = require('path');
@@ -22,9 +22,9 @@ require('./database');
 
 _dotenv2.default.config();
 
-const corsOptions = {
-  origin: '*',
-};
+// const corsOptions = {
+//   origin: '*',
+// };
 
 class App {
   constructor() {
@@ -34,8 +34,13 @@ class App {
   }
 
   middlewares() {
-    this.app.use(_cors2.default.call(void 0, corsOptions));
-    this.app.options('*', _cors2.default.call(void 0, corsOptions));
+    // this.app.use(cors(corsOptions));
+    // this.app.options('*', cors(corsOptions));
+    this.app.all('/*', (req, res, next) => {
+      res.header('Access-Control-Allow-Origin', '*');
+      res.header('Access-Control-Allow-Headers', 'X-Requested-With');
+      next();
+    });
     this.app.use(_helmet2.default.call(void 0, { crossOriginResourcePolicy: false }));
     this.app.use(_express2.default.urlencoded({ extended: true }));
     this.app.use(_express2.default.json());
