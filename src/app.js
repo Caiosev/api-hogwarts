@@ -3,7 +3,6 @@
 // Sucrase para utilizar import e export from no node
 
 import dotenv from 'dotenv';
-import cors from 'cors';
 import helmet from 'helmet';
 import express from 'express';
 import { resolve } from 'path';
@@ -20,6 +19,8 @@ import salaRoutes from './routes/salaRoutes';
 
 import './database';
 
+const cors = require('./middlewares/cors');
+
 dotenv.config();
 
 class App {
@@ -30,12 +31,8 @@ class App {
   }
 
   middlewares() {
-    this.app.use(cors({
-      credentials: true,
-      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-      allowedHeaders: ['Content-Type', 'Authorization'],
-      origin: ['http://localhost:3000', 'htps://hogwarts.seventerprise.tech'],
-    }));
+    this.app.options('*', cors);
+    this.app.use(cors);
     this.app.use(helmet({ crossOriginResourcePolicy: false }));
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
