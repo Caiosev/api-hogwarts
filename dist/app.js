@@ -24,8 +24,6 @@ _dotenv2.default.config();
 
 const corsOptions = {
   origin: '*',
-  credentials: true,
-  preflightContinue: true,
 };
 
 class App {
@@ -37,6 +35,7 @@ class App {
 
   middlewares() {
     this.app.use(_cors2.default.call(void 0, corsOptions));
+    this.app.options('*', _cors2.default.call(void 0, corsOptions));
     this.app.use(_helmet2.default.call(void 0, { crossOriginResourcePolicy: false }));
     this.app.use(_express2.default.urlencoded({ extended: true }));
     this.app.use(_express2.default.json());
