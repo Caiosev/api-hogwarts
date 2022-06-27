@@ -4,6 +4,7 @@
 
 import dotenv from 'dotenv';
 import helmet from 'helmet';
+import cors from 'cors';
 import express from 'express';
 import { resolve } from 'path';
 import homeRoutes from './routes/homeRoutes';
@@ -29,6 +30,12 @@ class App {
   }
 
   middlewares() {
+    this.app.use(cors({
+      credentials: true,
+      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+      allowedHeaders: ['Content-Type', 'authorization'],
+      origin: 'http://localhost:3000',
+    }));
     this.app.use(helmet({ crossOriginResourcePolicy: false }));
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());

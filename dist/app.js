@@ -4,6 +4,7 @@
 
 var _dotenv = require('dotenv'); var _dotenv2 = _interopRequireDefault(_dotenv);
 var _helmet = require('helmet'); var _helmet2 = _interopRequireDefault(_helmet);
+var _cors = require('cors'); var _cors2 = _interopRequireDefault(_cors);
 var _express = require('express'); var _express2 = _interopRequireDefault(_express);
 var _path = require('path');
 var _homeRoutes = require('./routes/homeRoutes'); var _homeRoutes2 = _interopRequireDefault(_homeRoutes);
@@ -29,6 +30,12 @@ class App {
   }
 
   middlewares() {
+    this.app.use(_cors2.default.call(void 0, {
+      credentials: true,
+      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+      allowedHeaders: ['Content-Type', 'authorization'],
+      origin: 'http://localhost:3000',
+    }));
     this.app.use(_helmet2.default.call(void 0, { crossOriginResourcePolicy: false }));
     this.app.use(_express2.default.urlencoded({ extended: true }));
     this.app.use(_express2.default.json());
