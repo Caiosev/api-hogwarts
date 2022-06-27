@@ -4,6 +4,7 @@ var _TokenController = require('../controllers/TokenController'); var _TokenCont
 
 const router = new (0, _express.Router)();
 
+router.options('*', _cors2.default.call(void 0, ));
 router.post('/', _cors2.default.call(void 0, ), _TokenController2.default.store);
 
 exports. default = router;
