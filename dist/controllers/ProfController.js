@@ -49,16 +49,22 @@ class ProfController {
 
   async update(req, res) {
     try {
-      const prof = await _Prof2.default.findByPk(req.userId);
+      const { id } = req.params;
+      const prof = await _Prof2.default.findByPk(id);
       if (!prof) {
         return res.status(400).json({
           errors: ['Prof nao existe'],
         });
       }
       const novoProf = await prof.update(req.body);
-      const { id, nome, login } = novoProf;
-      return res.json({ id, nome, login });
+      const {
+        nome, sobrenome, materia_id, login,
+      } = novoProf;
+      return res.json({
+        nome, sobrenome, materia_id, login,
+      });
     } catch (e) {
+      console.log(e);
       return res.json(null);
     }
   }
