@@ -91,7 +91,6 @@ class AlunoController {
       }
 
       const aluno = await _Aluno2.default.findByPk(id);
-
       if (!aluno) {
         return res.status(400).json({
           errors: ['Aluno nao existe'],
@@ -101,6 +100,7 @@ class AlunoController {
       await aluno.destroy();
       return res.json({ Deletado: true });
     } catch (e) {
+      console.log(e);
       return res.status(400).json({
         errors: e.erros.map((err) => err.message),
       });

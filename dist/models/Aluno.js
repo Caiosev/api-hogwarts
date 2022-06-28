@@ -1,4 +1,5 @@
-"use strict";const { Model, DataTypes } = require('sequelize');
+"use strict";const { Model, DataTypes, Sequelize } = require('sequelize');
+const bcrypt = require('bcryptjs');
 
 class Aluno extends Model {
   static init(sequelize) {
@@ -9,11 +10,32 @@ class Aluno extends Model {
       sangue_status: DataTypes.STRING,
       varinha: DataTypes.STRING,
       patrono: DataTypes.STRING,
+      login: DataTypes.STRING,
+      senha_hash: DataTypes.STRING,
+      password: {
+        type: Sequelize.VIRTUAL,
+        defaultValue: '',
+        validate: {
+          len: {
+            args: [6, 50],
+            msg: 'A senha deve ter mais de 6 caracteres',
+          },
+        },
+      },
     }, {
       sequelize,
       modelName: 'alunos',
     });
+    this.addHook('beforeSave', async (aluno) => {
+      if (aluno.password) {
+        aluno.senha_hash = await bcrypt.hash(aluno.password, 8);
+      }
+    });
     return this;
+  }
+
+  passwordIsValid(password) {
+    return bcrypt.compare(password, this.senha_hash);
   }
 
   static associate(models) {
