@@ -34,8 +34,14 @@ class ProfController {
        [{ association: 'prof-materia' },
          { association: 'prof-fotoprof' }],
       });
-      const { nome, login } = prof;
-      return res.json({ id, nome, login });
+      const { nome, sobrenome, login } = prof;
+      return res.json({
+        nome,
+        sobrenome,
+        login,
+        prof_materia: prof['prof-materia'],
+        prof_foto: prof['prof-fotoprof'],
+      });
     } catch (e) {
       return res.json(null);
     }
