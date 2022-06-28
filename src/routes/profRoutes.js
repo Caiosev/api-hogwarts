@@ -8,6 +8,6 @@ router.get('/:id', profController.show);
 router.get('/', profController.index);
 
 router.post('/', loginRequired, profController.store);
-router.put('/', loginRequired, profController.update);
+router.put('/:id', loginRequired, profController.update);
 router.delete('/', loginRequired, profController.delete);
 export default router;
