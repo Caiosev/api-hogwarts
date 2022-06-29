@@ -44,10 +44,6 @@ class ProvaController {
 
       const prova = await _Prova2.default.findAll({ where: { aluno_id } });
 
-      if (prova.length === 0) {
-        return res.json({ error: 'Aluno nao realizou nenhuma prova' });
-      }
-
       return res.json(prova);
     } catch (e) {
       return res.status(400).json({
