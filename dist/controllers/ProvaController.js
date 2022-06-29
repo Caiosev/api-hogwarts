@@ -27,6 +27,7 @@ class ProvaController {
       const prova = await _Prova2.default.create(req.body);
       return res.json(prova);
     } catch (e) {
+      console.log(e);
       return res.status(400).json({
         errors: e.errors.map((err) => err.message),
       });
