@@ -7,6 +7,6 @@ const router = new (0, _express.Router)();
 router.get('/', _ProvaController2.default.index);
 router.post('/', _loginRequired2.default, _ProvaController2.default.store);
 router.put('/:id', _loginRequired2.default, _ProvaController2.default.update);
-router.get('/:id', _ProvaController2.default.show);
+router.get('/:aluno_id', _ProvaController2.default.show);
 router.delete('/:id', _loginRequired2.default, _ProvaController2.default.delete);
 exports. default = router;

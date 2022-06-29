@@ -35,19 +35,17 @@ class ProvaController {
 
   async show(req, res) {
     try {
-      const { id } = req.params;
-      if (!id) {
+      const { aluno_id } = req.params;
+      if (!aluno_id) {
         return res.status(400).json({
           errors: ['Sem ID'],
         });
       }
 
-      const prova = await _Prova2.default.findByPk(id);
+      const prova = await _Prova2.default.findAll({ where: { aluno_id } });
 
-      if (!prova) {
-        return res.status(400).json({
-          errors: ['Prova nao existe'],
-        });
+      if (prova.length === 0) {
+        return res.json({ error: 'Aluno nao realizou nenhuma prova' });
       }
 
       return res.json(prova);

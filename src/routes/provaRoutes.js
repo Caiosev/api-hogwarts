@@ -7,6 +7,6 @@ const router = new Router();
 router.get('/', provaController.index);
 router.post('/', loginRequired, provaController.store);
 router.put('/:id', loginRequired, provaController.update);
-router.get('/:id', provaController.show);
+router.get('/:aluno_id', provaController.show);
 router.delete('/:id', loginRequired, provaController.delete);
 export default router;
