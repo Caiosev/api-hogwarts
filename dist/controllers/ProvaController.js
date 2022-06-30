@@ -43,7 +43,22 @@ class ProvaController {
         });
       }
 
-      const prova = await _Prova2.default.findAll({ where: { aluno_id } });
+      const prova = await _Prova2.default.findAll({
+        where: { aluno_id },
+        include:
+        [
+          {
+            association: 'prova-aluno',
+            model: _Aluno2.default,
+            include: [{ association: 'aluno-casa' }],
+          },
+          {
+            association: 'prova-prof',
+            model: _Prof2.default,
+            include: [{ association: 'prof-materia' }],
+          },
+        ],
+      });
 
       return res.json(prova);
     } catch (e) {
