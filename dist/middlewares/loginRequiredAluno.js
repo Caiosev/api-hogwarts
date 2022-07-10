@@ -27,8 +27,9 @@ exports. default = async (req, res, next) => {
     req.AlunoLogin = login;
     return next();
   } catch (e) {
-    return res.status(401).json({
-      errors: ['Token invalido'],
-    });
+    console.log(e);
+    // return res.status(401).json({
+    //   errors: ['Token invalido'],
+    // });
   }
 };

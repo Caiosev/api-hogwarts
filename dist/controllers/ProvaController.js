@@ -1,6 +1,7 @@
 "use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _Prova = require('../models/Prova'); var _Prova2 = _interopRequireDefault(_Prova);
 var _Aluno = require('../models/Aluno'); var _Aluno2 = _interopRequireDefault(_Aluno);
 var _Prof = require('../models/Prof'); var _Prof2 = _interopRequireDefault(_Prof);
+var _Casa = require('../models/Casa'); var _Casa2 = _interopRequireDefault(_Casa);
 
 class ProvaController {
   async index(req, res) {
@@ -25,6 +26,15 @@ class ProvaController {
   async store(req, res) {
     try {
       const prova = await _Prova2.default.create(req.body);
+      const nota = prova.dataValues.valor;
+      const id = prova.dataValues.aluno_id;
+      const aluno = await _Aluno2.default.findByPk(id);
+      const { casa_id } = aluno.dataValues;
+      const casa = await _Casa2.default.findByPk(casa_id);
+      const { nota_total } = casa.dataValues;
+      const notafinal = Number(nota_total) + Number(nota);
+      casa.nota_total = notafinal;
+      await _Casa2.default.update(casa.dataValues, { where: { id: casa_id } });
       return res.json(prova);
     } catch (e) {
       console.log(e);
@@ -110,6 +120,16 @@ class ProvaController {
           errors: ['Prova nao existe'],
         });
       }
+
+      const nota = prova.dataValues.valor;
+      const { aluno_id } = prova.dataValues;
+      const aluno = await _Aluno2.default.findByPk(aluno_id);
+      const { casa_id } = aluno.dataValues;
+      const casa = await _Casa2.default.findByPk(casa_id);
+      const { nota_total } = casa.dataValues;
+      const notafinal = Number(nota_total) - Number(nota);
+      casa.nota_total = notafinal;
+      await _Casa2.default.update(casa.dataValues, { where: { id: casa_id } });
 
       await prova.destroy();
       return res.json({ Deletado: true });
