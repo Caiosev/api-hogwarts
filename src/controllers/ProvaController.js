@@ -1,6 +1,7 @@
 import Prova from '../models/Prova';
 import Aluno from '../models/Aluno';
 import Prof from '../models/Prof';
+import Casa from '../models/Casa';
 
 class ProvaController {
   async index(req, res) {
@@ -25,6 +26,15 @@ class ProvaController {
   async store(req, res) {
     try {
       const prova = await Prova.create(req.body);
+      const nota = prova.dataValues.valor;
+      const id = prova.dataValues.aluno_id;
+      const aluno = await Aluno.findByPk(id);
+      const { casa_id } = aluno.dataValues;
+      const casa = await Casa.findByPk(casa_id);
+      const { nota_total } = casa.dataValues;
+      const notafinal = Number(nota_total) + Number(nota);
+      casa.nota_total = notafinal;
+      await Casa.update(casa.dataValues, { where: { id: casa_id } });
       return res.json(prova);
     } catch (e) {
       console.log(e);
@@ -110,6 +120,16 @@ class ProvaController {
           errors: ['Prova nao existe'],
         });
       }
+
+      const nota = prova.dataValues.valor;
+      const { aluno_id } = prova.dataValues;
+      const aluno = await Aluno.findByPk(aluno_id);
+      const { casa_id } = aluno.dataValues;
+      const casa = await Casa.findByPk(casa_id);
+      const { nota_total } = casa.dataValues;
+      const notafinal = Number(nota_total) - Number(nota);
+      casa.nota_total = notafinal;
+      await Casa.update(casa.dataValues, { where: { id: casa_id } });
 
       await prova.destroy();
       return res.json({ Deletado: true });
