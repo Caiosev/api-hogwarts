@@ -15,8 +15,7 @@ class AlunoController {
 
   async store(req, res) {
     try {
-      const { login } = req.body;
-      const validateLogin = await _Aluno2.default.findAll({ where: login });
+      const validateLogin = await _Aluno2.default.findAll({ where: { login: req.body.login } });
       if (validateLogin) {
         return res.status(400).json({
           errors: ['Login ja cadastrado'],
