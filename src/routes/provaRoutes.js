@@ -8,5 +8,5 @@ const router = new Router();
 router.get('/', provaController.index);
 router.post('/', loginRequiredAluno, provaController.store);
 router.get('/:aluno_id', provaController.show);
-router.delete('/:id', loginRequired, provaController.delete);
+router.delete('/:aluno_id', loginRequired, provaController.delete);
 export default router;
