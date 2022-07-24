@@ -15,6 +15,13 @@ class AlunoController {
 
   async store(req, res) {
     try {
+      const { login } = req.body;
+      const validateLogin = await _Aluno2.default.findAll({ where: login });
+      if (validateLogin) {
+        return res.status(400).json({
+          errors: ['Login ja cadastrado'],
+        });
+      }
       const aluno = await _Aluno2.default.create(req.body);
       return res.json(aluno);
     } catch (e) {
