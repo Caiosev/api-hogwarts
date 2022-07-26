@@ -4,8 +4,11 @@
 Este é o repositorio Back-end do Projeto Hogwarts, [clique aqui para ir para a versão Front-end](https://github.com/Caiosev/frontend-hogwarts)
 
 
-## Objetivo do Projeto
-A ideia surgiu apartir da necessidade que senti de ter um projeto aonde eu faria desde conceito de telas até o deploy, entendendo por completo como todas as partes de uma aplicação Web se comunicão.
+## Propósito
+O motivo da criação deste projeto foi de uma vontade que senti de me desafiar, já havia feito alguns projetos de frontend e de backend mas todos relativamente pequenos, que não se comunicavam e nem estavam em deploy.
+
+### A ideia
+Estava em busca de uma ideia de sistema onde eu poderia fazer CRUD e utilizar sistema de autenticação com diferentes logins. Depois de listar algumas ideias de sistemas, cheguei a conclusão que um sistema de escola cumpria todos os requisitos que desejava, então comecei a criar uma escola fictícia do zero, com todos concept design, história etc, no meio desse processo percebi que demoraria muito tempo para fazer tudo isso, e então tive uma epifania: qual é a melhor saga de filmes onde já existe uma escola?.....HOGWARTS É CLARO!!!
 
 ## O Projeto
 
